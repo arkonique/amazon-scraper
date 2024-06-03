@@ -5,6 +5,16 @@ import pandas as pd
 import json
 from tqdm import tqdm
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 HEADER = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0'
@@ -88,17 +98,25 @@ def all_products_in_range(search_term, n1,n2):
     return products
 
 
-search = sys.argv[1]
-pages = sys.argv[2]
-st = search.replace(' ', '_')
+
 
 if sys.argv[1] == '-h' or sys.argv[1] == '--help' or len(sys.argv) == 1 or len(sys.argv) > 4:
-    print('Usage: python grid_scraper.py <search_term> <number_of_pages>')
-    print('Usage: python grid_scraper.py <search_term> -r <page_range>')
-    print('Example: python grid_scraper.py "laptop" 5')
-    print('Example: python grid_scraper.py "laptop" -r 1-5')
+    print(f'{bcolors.OKGREEN}Usage:{bcolors.ENDC} python grid_scraper.py <search_term> <number_of_pages>')
+    print(f'{bcolors.OKCYAN}Description:{bcolors.ENDC} Search using search term for the number of pages specified and save the data in an excel file. Search term should be in double quotes.')  
+    print(f'{bcolors.OKBLUE}Example:{bcolors.ENDC} python grid_scraper.py "laptop" 5')
+    print("")
+    print(f'{bcolors.OKGREEN}Usage:{bcolors.ENDC} python grid_scraper.py <search_term> -r <page_range>')
+    print(f'{bcolors.OKCYAN}Description:{bcolors.ENDC} Search using search term for the page range specified and save the data in an excel file. Search term should be in double quotes.')
+    print(f'{bcolors.OKBLUE}Example:{bcolors.ENDC} python grid_scraper.py "laptop" -r 1-5')
+    print("")
+    print(f'{bcolors.OKGREEN}Usage:{bcolors.ENDC} python grid_scraper.py -h or --help')
+    print(f'{bcolors.OKCYAN}Description:{bcolors.ENDC} Display this help message.')
+
     sys.exit()
 else:
+    search = sys.argv[1]
+    pages = sys.argv[2]
+    st = search.replace(' ', '_')
     if sys.argv[2] == '-r':
         page1 = int(sys.argv[3].split('-')[0].strip())
         page2 = int(sys.argv[3].split('-')[1].strip())

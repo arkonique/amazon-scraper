@@ -1,11 +1,11 @@
 Just download the script and run as 
-```python
+```ps
 python3 scraper.py <search term in quotations> <number of pages>
 ```
 
 or run
 
-```python
+```ps
 python3 scraper.py -h
 ```
 
